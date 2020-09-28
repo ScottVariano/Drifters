@@ -1,0 +1,365 @@
+{
+    "key": "group_5dc9986b8fdc6",
+    "title": "Flex Layers",
+    "fields": [
+        {
+            "key": "field_5dc998e9436f8",
+            "label": "Flex Layers",
+            "name": "flex_layers",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_5dc998eeaa0d7": {
+                    "key": "layout_5dc998eeaa0d7",
+                    "name": "header",
+                    "label": "Header",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5dc998f8436f9",
+                            "label": "Header",
+                            "name": "header",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5dc9988550fc8"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f5aa766804dc": {
+                    "key": "layout_5f5aa766804dc",
+                    "name": "compass_with_content",
+                    "label": "Compass with Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f5aa766804dd",
+                            "label": "Compass with Content",
+                            "name": "compass_with_content",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f5aa732a6f04"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f5ab9aa234a5": {
+                    "key": "layout_5f5ab9aa234a5",
+                    "name": "photo_with_content",
+                    "label": "Photo with Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f5ab9aa234a6",
+                            "label": "Photo with Content",
+                            "name": "photo_with_content",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f5ab7ee8cfc1"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f5ac545336f7": {
+                    "key": "layout_5f5ac545336f7",
+                    "name": "events_preview",
+                    "label": "Events Preview",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f5ac545336f8",
+                            "label": "Events Preview",
+                            "name": "events_preview",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f5ac4ff22d28"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f5adfdf62b90": {
+                    "key": "layout_5f5adfdf62b90",
+                    "name": "centerpiece",
+                    "label": "Centerpiece",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f5adfdf62b91",
+                            "label": "Centerpiece",
+                            "name": "centerpiece",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f5adf9a3aa37"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f6150a379651": {
+                    "key": "layout_5f6150a379651",
+                    "name": "form",
+                    "label": "Form",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f6150a379652",
+                            "label": "Form",
+                            "name": "form",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f61505c499ef"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f61649d0acf2": {
+                    "key": "layout_5f61649d0acf2",
+                    "name": "contact_info_with_form",
+                    "label": "Contact Info with Form",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f61649d0acf3",
+                            "label": "Contact Info with Form",
+                            "name": "contact_info_with_form",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f61641fb8e3b"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f6174eb868bf": {
+                    "key": "layout_5f6174eb868bf",
+                    "name": "map",
+                    "label": "Map",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f6174eb868c0",
+                            "label": "Map",
+                            "name": "map",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f617491a1622"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f622f1441c87": {
+                    "key": "layout_5f622f1441c87",
+                    "name": "gallery",
+                    "label": "Gallery",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f622f1441c88",
+                            "label": "Gallery",
+                            "name": "gallery",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f622ef7191f7"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f64313b52408": {
+                    "key": "layout_5f64313b52408",
+                    "name": "menu",
+                    "label": "Menu",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5f64313b52409",
+                            "label": "Menu",
+                            "name": "menu",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f643023cd084"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Flex Layer",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "",
+    "modified": 1600401738
+}

@@ -1,0 +1,221 @@
+// Variables and Mixins
+
+// Colors
+$white: #FFFFFF;
+$black: #000000;
+$parchment: #e2dede;
+$crisp: #d5cecc;
+$brown: #474342;
+$dot: #b8aeac;
+
+// Fonts
+@font-face {
+  font-family: 'Hawlers 8 Rough';
+  src:  url('font/Hawlers-8-Rough.ttf') format('ttf'),
+        url('font/Hawlers-8-Rough.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Hawlers 9 Rough';
+  src:  url('font/Hawlers-9-Rough.ttf') format('ttf'),
+        url('font/Hawlers-9-Rough.otf') format('opentype');
+}
+@font-face {
+  font-family: 'QARVIC';
+  src:  url('font/QARVIC.ttf') format('ttf'),
+    url("font/QARVIC.otf") format("opentype"),
+    url("font/QARVIC.woff") format("woff"),
+    url("font/QARVIC.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'QARVIC';
+  src:  url('font/QARVIC-Bold.ttf') format('ttf'),
+    url("font/QARVIC-Bold.otf") format("opentype"),
+    url("font/QARVIC-Bold.woff") format("woff"),
+    url("font/QARVIC-Bold.woff2") format("woff2");
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'QARVIC';
+  src:  url('font/QARVIC-Italic.ttf') format('ttf'),
+    url("font/QARVIC-Italic.otf") format("opentype"),
+    url("font/QARVIC-Italic.woff") format("woff"),
+    url("font/QARVIC-Italic.woff2") format("woff2");
+  font-style: italic;
+}
+$system: -apple-system, '.SFNSText-Regular', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;
+$roboto: 'Roboto', $system;
+$font-awesome: 'Font Awesome 5 Free';
+$hawlers-8: 'Hawlers 8 Rough';
+$hawlers-9: 'Hawlers 9 Rough';
+$qarvic: 'QARVIC';
+
+// Aspect Ratio
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: $height / $width * 100%;
+    }
+    > .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// Media Queries - based on Bootstrap breakpoints
+$small-width: 576px;
+$small-med-width: 670px;
+$tablet-width: 768px;
+$wp-admin-switch: 782px;
+$desktop-width: 992px;
+$navigation-switch: 1036px;
+$large-desktop-width: 1200px;
+@mixin mobile {
+    @media (max-width: #{$small-width - 1px}){
+        @content;
+    }
+}
+@mixin small {
+    @media (max-width: #{$small-med-width - 1px}){
+        @content;
+    }
+}
+@mixin small-med-up {
+    @media (min-width: #{$tablet-width}){
+        @content;
+    }
+}
+@mixin small-med {
+    @media (max-width: #{$tablet-width - 1px}){
+        @content;
+    }
+}
+@mixin wp-admin-switch {
+    @media (max-width: #{$wp-admin-switch - 1px}){
+        @content;
+    }
+}
+@mixin tablet-up {
+    @media (min-width: #{$desktop-width}){
+        @content;
+    }
+}
+@mixin tablet {
+    @media (max-width: #{$desktop-width - 1px}){
+        @content;
+    }
+}
+@mixin desktop-up {
+    @media (min-width: #{$large-desktop-width}){
+        @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: #{$large-desktop-width - 1px}){
+        @content;
+    }
+}
+@mixin nav-switch-up {
+    @media (min-width: #{$navigation-switch}){
+        @content;
+    }
+}
+@mixin nav-switch {
+    @media (max-width: #{$navigation-switch - 1px}){
+        @content;
+    }
+}
+@mixin large-desktop {
+    @media (min-width: #{$large-desktop-width}){
+        @content;
+    }
+}
+
+// Taper Down Function - this allows you to adjust the CSS of an elements based on
+// different breakpoints, from large screen sizes to small. An example would be:
+// h1 {
+//  @include taper-down('font-size', 'px', '60', '55', '50', '45', '40', '35');
+// }
+@mixin taper-down($property, $unit, $ld-size, $d-size, $t-size, $sm-size, $s-size, $m-size){
+    @include large-desktop {
+        #{$property}: #{$ld-size + $unit};
+    }
+    @include desktop {
+        #{$property}: #{$d-size + $unit};
+    }
+    @include tablet {
+        #{$property}: #{$t-size + $unit};
+    }
+    @include small-med {
+        #{$property}: #{$sm-size + $unit};
+    }
+    @include small {
+        #{$property}: #{$s-size + $unit};
+    }
+    @include mobile {
+        #{$property}: #{$m-size + $unit};
+    }
+}
+
+// Button Mixin - Add default button styles here.
+@mixin btn {
+    // display: inline-block;
+    padding: 15px;
+    color: $white;
+    background: lighten($black, 50%);
+}
+
+// Background Cover Mixin - use this to easily set a 'cover' background.
+@mixin cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// Background Contain Mixin - use this to easily set a 'contain' background.
+@mixin contain {
+    @include cover;
+    background-size: contain;
+}
+
+// Content Mixin - use to easily set up certain pseudo-elements.
+@mixin content {
+	content: '';
+	display: block;
+}
+
+// Set an element to absolute position and fill out its parent element.
+@mixin fillall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// Transition Mixin - use to set default transition duration and timing.
+@mixin transition {
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+// Placeholder mixin - use this to more easily style placeholder text on inputs.
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
