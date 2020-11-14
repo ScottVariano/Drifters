@@ -325,6 +325,37 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_5faad454e049a": {
+                    "key": "layout_5faad454e049a",
+                    "name": "wysiwyg",
+                    "label": "WYSIWYG",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5faad454e049b",
+                            "label": "WYSIWYG",
+                            "name": "wysiwyg",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5faad41c41269"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Flex Layer",
@@ -361,5 +392,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1600401738
+    "modified": 1605031017
 }

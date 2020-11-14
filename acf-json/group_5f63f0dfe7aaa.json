@@ -132,6 +132,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5f7e253f0076d",
+            "label": "Hours",
+            "name": "hours",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "br"
         }
     ],
     "location": [
@@ -151,5 +170,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1600910680
+    "modified": 1602102630
 }

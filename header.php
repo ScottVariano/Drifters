@@ -2,6 +2,16 @@
 <html <?php language_attributes(); ?>>
 <head>
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179960925-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-179960925-1');
+	</script>
+	<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
+	
 	<meta charset="UTF-8">
 	<!-- <title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
@@ -16,7 +26,12 @@
 
 		<!-- <div class="menu-toggle-backdrop"></div> -->
 		<div class="menu-toggle-backdrop"></div>
-		<div class="menu-toggle"></div>
+		<div class="menu-toggle">
+			<div class="menu-toggle__1"></div>
+			<div class="menu-toggle__2"></div>
+			<div class="menu-toggle__3"></div>
+			<div class="menu-toggle__4"></div>
+		</div>
 
 	  	<?php
 		$custom_logo_id = get_theme_mod('custom_logo');
@@ -28,7 +43,7 @@
 		<?php
 		endif; ?>
 		<div class="fixed-nav">
-			<div class="menu-toggle menu-toggle--nav"></div>
+			<!-- <div class="menu-toggle menu-toggle--nav"></div> -->
 			<div class="container">
 				<div class="row">
 					<div class="col-12">

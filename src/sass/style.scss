@@ -6,6 +6,9 @@ html {
 	background: $parchment;
 	height: 100%;
 }
+// * {
+// 	will-change: transform;
+// }
 html,
 body {
 	max-width: 100vw;
@@ -119,12 +122,14 @@ h3 {
 a {
 	@include transition;
 	transition-property: color;
+	will-change: color;
 }
 
 .btn {
 	@include taper-down('font-size', 'px', '25', '25', '22', '22', '18', '16.8');
 	@include transition;
 	transition-property: color, background, border-color;
+	will-change: color, background, border-color;
 	background: $brown;
 	color: $parchment;
 	border: 2.8px solid $brown;
@@ -169,18 +174,21 @@ a {
 	width: 70px;
 	max-height: 57.25px;
 	// background: red;
-	background-image: url(img/menu-toggle.png);
+	// background-image: url(img/menu-toggle.png);
 	@include contain;
 	background-size: 100% 100%;
 	position: fixed;
 	top: 10px;
 	right: 10px;
-	z-index: 2;
+	z-index: 4;
 	@include transition;
-	transition-property: width;
+	transition-duration: .35s;
+	// transition-delay: .175s;
+	transition-property: transform, opacity;
+	will-change: transform, opacity;
 	&:hover {
 		cursor: pointer;
-		width: 100px
+		// width: 100px
 	}
 	&:not(.menu-toggle--nav){
 		// &:before {
@@ -217,6 +225,49 @@ a {
 	pointer-events: none;
 }
 
+.menu-toggle {
+	&__1,
+	&__2,
+	&__3,
+	&__4 {
+		position: absolute;
+	    top: 12px;
+	    height: 5px;
+	    left: 19px;
+	    right: 12px;
+	    background: $brown;
+	    @include transition;
+	    transition-duration: .35s;
+	    transition-property: left, opacity, background;
+	    will-change: left, opacity, background;
+	}
+	&__2,
+	&__4 {
+		left: 11px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	&__3 {
+		top: auto;
+		bottom: 12px;
+		left: 23px;
+	}
+	&__4 {
+		opacity: 0;
+		transform: translateY(-50%) rotate(90deg);
+		// transform-origin: center
+	}
+	&:hover {
+
+		.menu-toggle__1,
+		.menu-toggle__2,
+		.menu-toggle__3 {
+			left: 11px;
+		}
+
+	}
+}
+
 .fixed-nav {
 	background-color: $brown;
 	background-image: url(img/nav-relief-map.png);
@@ -232,6 +283,7 @@ a {
 	@include transition;
 	transition-property: transform;
 	transition-duration: .4s;
+	will-change: transform;
 	box-shadow: 0 0 40px rgba(0,0,0,.33);
 	&:before,
 	&:after {
@@ -247,6 +299,7 @@ a {
 		@include transition;
 		transition-property: opacity;
 		transition-duration: 1s;
+		will-change: opacity;
 	}
 	&:after {
 		top: 0;
@@ -321,7 +374,7 @@ a {
 			margin-bottom: -21px;
 			a {
 				@include transition;
-				transition-property: $white;
+				// transition-property: $white;
 				white-space: nowrap;
 			}
 			& > li {
@@ -432,25 +485,24 @@ a {
 								align-items: center;
 								justify-content: center;
 								position: relative;
-								&:after {
-									@include content;
-									height: 1px;
-									background: $parchment;
-									position: absolute;
-									left: 8px;
-									bottom: 0;
-									width: 0;
-									@include transition;
-									transition-property: width;
-								}
+								text-transform: lowercase;
+								// &:after {
+								// 	@include content;
+								// 	height: 1px;
+								// 	background: $parchment;
+								// 	position: absolute;
+								// 	left: 8px;
+								// 	bottom: 0;
+								// 	width: 0;
+								// 	@include transition;
+								// 	transition-property: width;
+								// }
 								&:hover {
-									// background: $parchment;
-									// color: $brown;
 									color: $white;
 									text-decoration: none;
-									&:after {
-										width: calc(100% - 16px);
-									}
+									// &:after {
+									// 	width: calc(100% - 16px);
+									// }
 								}
 							}
 						}
@@ -475,6 +527,21 @@ a {
 }
 
 .active-nav {
+	.menu-toggle {
+		transform: rotate(45deg);
+		&__1,
+		&__3 {
+			opacity: 0;
+		}
+		&__2,
+		&__4 {
+			background: $white;
+			opacity: 1;
+		}
+	}
+	.menu-toggle-backdrop {
+		opacity: 0;
+	}
 	.fixed-nav {
 		transform: translateX(0);
 		&:before,
@@ -526,7 +593,8 @@ a {
 			background-image: url(img/forest.png);
 			@include cover;
 
-			transition: transform .05s ease;
+			// transition: transform .05s ease;
+			will-change: transform;
 			// @include transition;
 			// transition-property: transform;
 		}
@@ -537,7 +605,7 @@ a {
 		// }
 		.layered-fog {
 			// @include aspect-ratio(1920, 1257);
-			height: 133.33%;
+			height: 166.66%;
 			position: absolute;
 			opacity: .8;
 			// top: 50%;
@@ -549,7 +617,8 @@ a {
 			background-repeat: repeat-x;
 			// background-color: orange;
 			background-image: url(img/full-fog.png);
-			transition: .05s ease;
+			// transition: .05s ease;
+			will-change: transform;
 			transition-property: top;
 			// background-image: url(img/map-marker.png);
 			// animation: animate-background 30s linear infinite;
@@ -732,8 +801,11 @@ a {
 				right: calc(-50% - 7.5px);
 				overflow: hidden;
 				@include cover;
-				transition: .05s ease;
-				transition-property: top, bottom;
+				// transition: .05s ease;
+				// transition-property: top, bottom;
+				// will-change: transform;
+				// transition: transform .05s linear;
+				will-change: transform;
 				@include tablet {
 					position: static;
 					@include aspect-ratio(256,193);
@@ -747,7 +819,8 @@ a {
 					width: 100%;
 					height: calc(100% + 360px);
 					@include cover;
-					transition: transform .05s ease;
+					// transition: transform .05s ease;
+					will-change: transform;
 				}
 
 			}
@@ -781,6 +854,7 @@ a {
 			transform: translateY(-21.15%) scale(1.12);
 			@include transition;
 			transition-property: transform;
+			will-change: transform;
 			// background: red;
 			opacity: 0;
 			&.stamped {
@@ -793,7 +867,8 @@ a {
 
 	&--events-preview {
 
-		@include taper-down('padding-top', 'px', '66', '62', '56', '52', '50', '40');
+		// @include taper-down('padding-top', 'px', '66', '62', '56', '52', '50', '40');
+		@include taper-down('padding-top', 'px', '75', '70', '64', '55', '45', '40');
 		@include taper-down('padding-bottom', 'px', '75', '70', '64', '55', '45', '40');
 		background: $crisp;
 
@@ -843,15 +918,32 @@ a {
 				flex-direction: column;
 				justify-content: space-between;
 				align-items: center;
+				@include transition;
+				transition-property: height;
+				transition-duration: .5s;
+				will-change: height;
 				.dot {
+					transform: scale(.001);
 					width: 6px;
 					height: 6px;
 					border-radius: 50%;
 					background: $dot;
+					@include transition;
+					transition-property: transform;
+					will-change: transform;
+					// transition-delay: .45s;
+					transition-duration: .65s;
 					&:nth-child(9n){
 						width: 18px;
-						height: 18px;
+						max-height: 18px;
 					}
+					&--activated {
+						transform: scale(1);
+					}
+					height: 0;
+					flex-grow: 1;
+					max-height: 6px;
+					transition: all .25s ease;
 				}
 				@include tablet {
 					display: none;
@@ -931,6 +1023,7 @@ a {
 			@include fillall;
 			@include transition;
 			transition-property: opacity;
+			will-change: opacity;
 			opacity: 0;
 			h2 {
 				@include taper-down('font-size', 'px', '30', '30', '27.5', '25', '24', '24');
@@ -965,12 +1058,14 @@ a {
 			// height: 100%;
 			@include cover;
 
-			transition: transform .05s ease;
+			// transition: transform .05s linear;
+			will-change: transform;
 			// @include transition;
 			// transition-property: transform;
 		}
 		.brown-wrap {
 			max-width: 710px;
+			// will-change: transform;
 			.stamp {
 				@include aspect-ratio(1,1);
 				position: absolute;
@@ -987,6 +1082,7 @@ a {
 				@include transition;
 				transition-property: transform;
 				transition-delay: 2s;
+				will-change: transform;
 				// background: red;
 				opacity: 0 !important;
 				&.stamped {
@@ -1065,11 +1161,13 @@ a {
 			}
 			p {
 				line-height: 1.25;
+				text-transform: uppercase;
 			}
 			a {
 				color: inherit;
 				@include transition;
 				transition-property: color;
+				will-change: color;
 				&:hover {
 					text-decoration: inherit;
 					// color: darken($crisp, 8%);
@@ -1189,7 +1287,8 @@ a {
 					// }
 					height: calc(100% + 200px);
 					@include cover;
-					transition: transform .05s ease;
+					// transition: transform .05s ease;
+					will-change: transform;
 				}
 			}
 		}
@@ -1414,10 +1513,19 @@ a {
 				height: calc(100% + 350px);
 				top: 50%;
 				transform: translateY(-50%);
-				transition: transform .05s ease;
+				// transition: transform .05s ease;
+				will-change: transform;
 			}
 		}
 
+	}
+
+	&--wysiwyg {
+
+		@include taper-down('padding-top', 'px', '56', '52', '48', '44', '38', '35');
+		@include taper-down('padding-bottom', 'px', '56', '52', '48', '44', '38', '35');
+		background: $parchment;
+		
 	}
 
 }
@@ -1467,6 +1575,7 @@ a {
 			font-size: 18px;
 			@include transition;
 			transition-property: background;
+			will-change: background;
 			&:hover {
 				background: lighten($brown, 6.5%);
 				color: $white;
@@ -1694,6 +1803,10 @@ div.wpcf7 .ajax-loader {
 		border-color: $parchment;
 		border-width: 7.5px;
 	}
+}
+
+.wow {
+	will-change: transform, opacity;
 }
 
 @keyframes animate-background {

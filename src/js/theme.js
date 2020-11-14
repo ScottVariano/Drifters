@@ -63,10 +63,11 @@ jQuery(document).ready(function($){
 			// $('.flex-layer--header .background, .flex-layer--centerpiece .background').each(function(){
 			$('.layered-fog').each(function(){
 				var fix = $(document).scrollTop();
-				var size = ($(this).parents('.flex-layer').outerHeight() / windowHeight) * -.33;
+				var size = ($(this).parents('.flex-layer').outerHeight() / windowHeight) * -.66;
 				// console.log(size);
 				// alert(size);
-				$(this).css('top', (fix * size) + 'px');
+				// $(this).css('transform', (fix * size) + 'px');
+				$(this).css('transform', 'translate(-50%, ' + (fix * size) + 'px)');
 			});
 			$('.flex-layer--header .background--short').each(function(){
 				var fix = $(this).attr('data-position-calc');
@@ -84,12 +85,12 @@ jQuery(document).ready(function($){
 				var fix = $(this).attr('data-position-calc');
 				$(this).css('transform', 'translate(-50%, calc(-50% + ' + (fix * 180 * -1) + 'px))');
 			});
-			$('.flex-layer--photo-with-content .photo__inner').each(function(){
-				var fix = $(this).attr('data-position-calc');
-				fix = fix * 23;
-				$(this).css('top', (23 + (fix * 1)) + 'px');
-				$(this).css('bottom', (23 + (fix * -1)) + 'px');
-			});
+			// $('.flex-layer--photo-with-content .photo__inner').each(function(){
+			// 	var fix = $(this).attr('data-position-calc');
+			// 	fix = fix * 23;
+			// 	$(this).css('top', (23 + (fix * 1)) + 'px');
+			// 	$(this).css('bottom', (23 + (fix * -1)) + 'px');
+			// });
 			$('.flex-layer--menu .photo__inner').each(function(){
 				var fix = $(this).attr('data-position-calc');
 				$(this).css('transform', 'translateY(calc(-50% + ' + (fix * 175 * -1) + 'px))');
@@ -126,6 +127,15 @@ jQuery(document).ready(function($){
 					}
 				//}
 			});
+
+			$('.dot').each(function(index){
+				var dot = $(this);
+				var timing = index * .025;
+				dot.css('transition-delay', timing + 's');
+				if($(this).siblings('.dot:first').attr('data-position-calc') < .2){
+					dot.addClass('dot--activated');
+				}
+			});
 		});
 	}
 	positionCalc();
@@ -138,20 +148,43 @@ jQuery(document).ready(function($){
 		$('.event-layers').each(function(){
 			var layers = $(this);
 			var stripe = layers.find('.dot-separator');
-			stripe.html('');
+			var currentDots = stripe.find('.dot').length;
+			// alert(currentDots);
+			// stripe.html('');
 			var eventCount = parseInt($(this).find('.event-card').length);
-			var dotCount = (eventCount * 9) + 8;
+			var dotCount = (eventCount * 9) + 8 - currentDots;
 			// alert(dotCount);
 			for(i = 0; i < dotCount; i++){
-				var animation = 'fadeInLeft';
-				if(i % 2 == 0){
-					animation = 'fadeInRight';
+				// var delay = .25 + (.22 * i);
+				// var animation = 'fadeInLeft';
+				// if(i % 2 == 0){
+				// 	animation = 'fadeInRight';
+				// }
+				// animation = 'zoomIn';
+				var posCalc = '';
+				console.log(i);
+				if(i == 0){
+					posCalc = ' data-position-calc';
 				}
-				stripe.append('<div class="dot wow ' + animation + '" data-wow-delay=".25s" style="visibility: hidden;"></div>');
+				stripe.append('<div class="dot"' + posCalc + '></div>');
+				// stripe.append('<div class="dot wow--disabled ' + animation + '"></div>');
 			}
 		});
 	}
 	sizeEventDots();
+
+	function disableScroll(){ 
+	    // Get the current page scroll position 
+	    scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
+	    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft, 
+	        // if any scroll is attempted, set this to the previous value 
+	        window.onscroll = function() { 
+	            window.scrollTo(scrollLeft, scrollTop); 
+	        }; 
+	} 
+	function enableScroll(){ 
+	    window.onscroll = function() {}; 
+	} 
 
 	$('*[data-events-load]').click(function(e){
 		e.preventDefault();
@@ -161,6 +194,7 @@ jQuery(document).ready(function($){
 		var events = btn.parents('.flex-layer').find('.event-layers');
 		var offset = parseInt($(this).attr('data-events-count'));
 		$.getJSON(siteUrl + '/wp-json/drifters/v1/events?offset=' + offset, function(result){
+			disableScroll();
 			$.each(result.documents, function(key, val){
 				events.append(`
 					<div class="row event-row" style="display: none;">
@@ -194,6 +228,9 @@ jQuery(document).ready(function($){
 			});
 			btn.html('<span class="inner-fix d-inline-block">See More Events</span>');
 			btnFix();
+			setTimeout(function(){
+				enableScroll();
+			}, 200);
 			btn.attr('data-events-count', offset + 3);
 			if(result.documents.length < 3){
 				btn.remove();

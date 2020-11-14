@@ -114,102 +114,126 @@ if(have_rows('flex_layers')): while(have_rows('flex_layers')): the_row();
 
     elseif(get_row_layout() == 'events_preview'):
 
-        layer_start(); ?>
+        layer_start();
+
+        $style = get_sub_field('style'); ?>
 
             <div class="map"></div>
 
-            <div class="col-12 text-center">
-                <?php
-                if($title = get_sub_field('title')): ?>
-                    <h2 class="single-line wow fadeInUp" data-wow-delay=".25s"><?php echo $title; ?></h2>
-                <?php
-                endif; ?>
-                <?php
-                if($content = get_sub_field('content')): ?>
-                    <p class="content mx-auto mb-5 wow fadeInUp" data-wow-delay=".5s"><?php echo $content; ?></p>
-                <?php
-                endif; ?>
-            </div>
-            <div class="col-12 text-center event-layers">
+            <?php
+            if($style !== 'placeholder-video'): ?>
 
-                <div class="dot-separator"></div>
+                <div class="col-12 text-center">
+                    <?php
+                    if($title = get_sub_field('title')): ?>
+                        <h2 class="single-line wow fadeInUp" data-wow-delay=".25s"><?php echo $title; ?></h2>
+                    <?php
+                    endif; ?>
+                    <?php
+                    if($content = get_sub_field('content')): ?>
+                        <p class="content mx-auto mb-5 wow fadeInUp" data-wow-delay=".5s"><?php echo $content; ?></p>
+                    <?php
+                    endif; ?>
+                </div>
 
-                <?php
-                $today = date('Ymd', current_time('timestamp', 0));
-                $args = array(
-                    'post_type' => 'event',
-                    'posts_per_page' => get_sub_field('initial_events'),
-                    'meta_key' => 'event_date',
-                    'orderby' => 'meta_value',
-                    'order' => 'ASC',
-                    'meta_query' => array(
-                        array(
-                            'key' => 'event_date',
-                            'value' => $today,
-                            'compare' => '>='
+            <?php
+            endif; ?>
+
+            <?php
+            // $style = get_sub_field('style');
+            if($style !== 'placeholder-video'): ?>
+
+                <div class="col-12 text-center event-layers">
+
+                    <div class="dot-separator"></div>
+
+                    <?php
+                    $today = date('Ymd', current_time('timestamp', 0));
+                    $args = array(
+                        'post_type' => 'event',
+                        'posts_per_page' => get_sub_field('initial_events'),
+                        'meta_key' => 'event_date',
+                        'orderby' => 'meta_value',
+                        'order' => 'ASC',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'event_date',
+                                'value' => $today,
+                                'compare' => '>='
+                            )
                         )
-                    )
-                );
-                $events_query = new WP_Query($args);
-                if($events_query->have_posts()):
-                while($events_query->have_posts()): $events_query->the_post(); ?>
+                    );
+                    $events_query = new WP_Query($args);
+                    if($events_query->have_posts()):
+                    while($events_query->have_posts()): $events_query->the_post(); ?>
 
-                    <div class="row event-row">
-                        <div class="col-12 col-lg-5 mb-4 mb-lg-0 p-relative">
-                            <div class="row event-card wow fadeInUp" data-wow-delay=".5s">
-                                <div class="col-4 d-none d-sm-flex logo align-items-center">
-                                    <?php
-                                    $custom_logo_id = get_theme_mod('custom_logo');
-                                    $logo = wp_get_attachment_image_src($custom_logo_id, 'large')[0];
-                                    if(has_custom_logo()): ?>
-                                        <a class="theme-logo d-inline-block" href="<?php echo home_url(); ?>">
-                                            <img class="d-inline-block" src="<?php echo esc_url($logo); ?>">
-                                        </a>
-                                    <?php
-                                    endif; ?>
-                                </div>
-                                <div class="col-12 col-sm-8 info-wrap d-flex align-items-center">
-                                    <div class="info mx-auto">
-                                        <p class="info__intro d-inline-block mx-auto">Drifters Kitchen &amp; Bar<span class="d-block">Presents</span></p>
-                                        <h3><?php the_title(); ?></h3>
-                                        <div class="stylized-line"></div>
-                                        <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
+                        <div class="row event-row">
+                            <div class="col-12 col-lg-5 mb-4 mb-lg-0 p-relative">
+                                <div class="row event-card wow fadeInUp" data-wow-delay=".5s">
+                                    <div class="col-4 d-none d-sm-flex logo align-items-center">
+                                        <?php
+                                        $custom_logo_id = get_theme_mod('custom_logo');
+                                        $logo = wp_get_attachment_image_src($custom_logo_id, 'large')[0];
+                                        if(has_custom_logo()): ?>
+                                            <a class="theme-logo d-inline-block" href="<?php echo home_url(); ?>">
+                                                <img class="d-inline-block" src="<?php echo esc_url($logo); ?>">
+                                            </a>
+                                        <?php
+                                        endif; ?>
+                                    </div>
+                                    <div class="col-12 col-sm-8 info-wrap d-flex align-items-center">
+                                        <div class="info mx-auto">
+                                            <p class="info__intro d-inline-block mx-auto">Drifters Kitchen &amp; Bar<span class="d-block">Presents</span></p>
+                                            <h3><?php the_title(); ?></h3>
+                                            <div class="stylized-line"></div>
+                                            <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="event-hover p-4 d-flex align-items-center justify-content-center">
+                                        <div>
+                                            <h2 class="single-line"><?php the_field('subtitle'); ?></h2>
+                                            <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="event-hover p-4 d-flex align-items-center justify-content-center">
+                                <!-- <div class="event-hover p-4 d-flex align-items-center justify-content-center">
                                     <div>
                                         <h2 class="single-line"><?php the_field('subtitle'); ?></h2>
                                         <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <!-- <div class="event-hover p-4 d-flex align-items-center justify-content-center">
-                                <div>
-                                    <h2 class="single-line"><?php the_field('subtitle'); ?></h2>
-                                    <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
-                                </div>
-                            </div> -->
                         </div>
-                    </div>
 
-                <?php
-                endwhile;
-                endif;
-                wp_reset_postdata(); ?>
-            </div>
-            <div class="col-12 mt-4 text-center">
-                <p class="mb-0 wow fadeInUp" data-wow-delay=".25s">
                     <?php
-                    $should = get_sub_field('button_should');
-                    if($should == 'link'): ?>
-                        <a href="<?php echo get_sub_field('link')['url']; ?>" class="btn btn-skeleton">See All Events</a>
+                    endwhile;
+                    endif;
+                    wp_reset_postdata(); ?>
+                </div>
+                <div class="col-12 mt-4 text-center">
+                    <p class="mb-0 wow fadeInUp" data-wow-delay=".25s">
+                        <?php
+                        $should = get_sub_field('button_should');
+                        if($should == 'link'): ?>
+                            <a href="<?php echo get_sub_field('link')['url']; ?>" class="btn btn-skeleton">See All Events</a>
+                        <?php
+                        elseif($should == 'load'): ?>
+                            <a href="#" data-events-load data-events-count="<?php the_sub_field('initial_events'); ?>" class="btn btn-skeleton">See More Events</a>
+                        <?php
+                        endif; ?>
+                    </p>
+                </div>
+
+            <?php
+            else: ?>
+
+                <div class="embed-responsive embed-responsive-16by9 mt-2 mb-3 mt-lg-3 mb-lg-4">
                     <?php
-                    elseif($should == 'load'): ?>
-                        <a href="#" data-events-load data-events-count="<?php the_sub_field('initial_events'); ?>" class="btn btn-skeleton">See More Events</a>
-                    <?php
-                    endif; ?>
-                </p>
-            </div>
+                    the_sub_field('video'); ?>
+                </div>
+
+            <?php
+            endif; ?>
 
         <?php
         layer_end();
@@ -261,11 +285,11 @@ if(have_rows('flex_layers')): while(have_rows('flex_layers')): the_row();
                 <div class="brown-wrap">
                     <h2><?php the_sub_field('contact_info_title'); ?></h2>
                     <h3>Hours</h3>
-                    <p class="hours mb-4">THURSDAY THROUGH SUNDAY<br>3PM TILL' 11PM</p>
+                    <p class="hours mb-4"><?php the_field('hours', 'option'); ?></p>
                     <div class="stylized-line"></div>
-                    <p class="mt-3 mb-2">1600 MIDDLE COUNTRY ROAD<br>RIDGE, NEW YORK 11961</p>
-                    <p class="mb-2"><a href="tel:1-631-775-8888">1-631-775-8888</a></p>
-                    <p class="mb-0"><a href="mailto:INFO@DRIFTERSKITCHENANDBAR.COM">INFO@DRIFTERSKITCHENANDBAR.COM</a></p>
+                    <p class="mt-3 mb-2"><?php the_field('address', 'option'); ?></p>
+                    <p class="mb-2"><a href="tel:<?php the_field('phone_1', 'option'); ?>"><?php the_field('phone_2', 'option'); ?></a></p>
+                    <p class="mb-0"><a href="mailto:<?php the_field('email', 'option'); ?>"><?php the_field('email', 'option'); ?></a></p>
                 </div>
             </div>
             <div class="form col-12 col-lg-6 text-center">
@@ -409,6 +433,18 @@ if(have_rows('flex_layers')): while(have_rows('flex_layers')): the_row();
                     <div class="photo__inner" style="background-image: url(<?php echo get_sub_field('photo')['sizes']['large']; ?>);" data-position-calc></div>
                 </div>
 
+            </div>
+
+        <?php
+        layer_end();
+
+    elseif(get_row_layout() == 'wysiwyg'):
+
+        layer_start(); ?>
+
+            <div class="col-12">
+                <?php
+                the_sub_field('wysiwyg'); ?>
             </div>
 
         <?php
