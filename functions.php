@@ -32,7 +32,7 @@ add_action('after_setup_theme', 'theme_logo_setup');
 // Add scripts to wp_head()
 function add_site_url_head_script(){ ?>
   <script>
-    var siteUrl = '<?php echo site_url(); ?>';
+    var siteUrl = '<?php echo get_home_url(); ?>';
   </script>
 <?php }
 add_action('wp_head', 'add_site_url_head_script');

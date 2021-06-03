@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
 				// }
 				// animation = 'zoomIn';
 				var posCalc = '';
-				console.log(i);
+				// console.log(i);
 				if(i == 0){
 					posCalc = ' data-position-calc';
 				}
