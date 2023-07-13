@@ -189,12 +189,12 @@ if(have_rows('flex_layers')): while(have_rows('flex_layers')): the_row();
                                             <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
                                         </div>
                                     </div>
-                                    <div class="event-hover p-4 d-flex align-items-center justify-content-center">
+                                    <a href="<?php the_permalink(); ?>" class="event-hover p-4 d-flex align-items-center justify-content-center">
                                         <div>
                                             <h2 class="single-line"><?php the_field('subtitle'); ?></h2>
                                             <p class="info__date mb-0"><?php echo date('F j, Y', strtotime(get_field('event_date'))); ?></p>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <!-- <div class="event-hover p-4 d-flex align-items-center justify-content-center">
                                     <div>
